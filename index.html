@@ -1,151 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Head contents remain unchanged -->
-    <!-- Insert your original <head> section here -->
-    <!-- Your style and metadata will remain unchanged -->
-    <!-- Ensure fonts, animations, etc., are still present -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Raksha Bandhan!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #ffe1ec, #ffd3d3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 30px;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d81b60;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+        }
+
+        .rakhi-img {
+            width: 100%;
+            max-width: 240px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: block;
+        }
+
+        p {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #f5508a, #f783ac);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        #popup {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #popup-content {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .name-input {
+            padding: 12px;
+            width: 90%;
+            border: 2px solid #f783ac;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .share-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .share-links input {
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-
-    <!-- Decorations and Hearts -->
-    <div class="heart-container" id="heart-container"></div>
-    <div class="decoration deco-top-left"></div>
-    <div class="decoration deco-bottom-right"></div>
-
-    <!-- Main Container -->
-    <div class="container">
+    <div class="card">
         <h1>Happy Raksha Bandhan!</h1>
-        <div class="image-container" id="image-container">
-            <img src="raksha-bandhan.jpg" alt="Happy Raksha Bandhan" class="rakhi-gif">
-        </div>
+        <img src="raksha-bandhan.jpg" alt="Rakhi Art" class="rakhi-img">
         <p id="greeting-message">
             Sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!
         </p>
         <button class="btn" onclick="openPopup()">✨ Create a Personalized Wish ✨</button>
     </div>
 
-    <!-- Popup Modal -->
     <div id="popup">
         <div id="popup-content">
-            <h2 style="font-family: 'Tangerine', cursive; color: #d81b60; font-size: 3.5em; margin-top:0;">Share a Special Wish!</h2>
-            <p style="color: #555; margin-bottom: 20px;">Enter your name to create a magical Rakhi greeting for your sibling.</p>
-            <input type="text" id="senderName" class="name-input" placeholder="Enter Your Name Here">
-            <div id="popup-controls">
-                <button class="btn back-btn" onclick="closePopup()">Back</button>
-                <button class="btn" onclick="generateLink()">Generate Link</button>
+            <h2 style="color: #d81b60; font-family: 'Dancing Script', cursive; font-size: 2.5em;">Send Your Wish</h2>
+            <input type="text" id="senderName" class="name-input" placeholder="Enter your name">
+            <button class="btn" onclick="generateLink()">Generate Link</button>
+            <div class="share-links" id="share-section" style="display:none;">
+                <input type="text" id="copy-link-input" readonly class="name-input">
+                <button class="btn" onclick="copyToClipboard()">Copy Link</button>
+                <a id="whatsapp-share-link" href="#" class="btn" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">Share on WhatsApp</a>
             </div>
-            <div id="share-section" style="display: none; margin-top: 25px;">
-                <p>Your personalized link is ready! Share the magic:</p>
-                <input type="text" id="copy-link-input" class="name-input" style="margin-bottom:10px;" readonly>
-                <div>
-                    <button class="btn" onclick="copyToClipboard()">Copy Link</button>
-                    <a id="whatsapp-share-link" href="#" class="btn" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);">Share on WhatsApp</a>
-                </div>
-            </div>
+            <div style="margin-top:15px;"><button class="btn" onclick="closePopup()" style="background:#ccc;color:#333;">Close</button></div>
         </div>
     </div>
 
     <script>
-        function createHearts() {
-            const heartContainer = document.getElementById('heart-container');
-            const heartColors = ['heart-color-1', 'heart-color-2', 'heart-color-3', 'heart-color-4'];
-            setInterval(() => {
-                const heart = document.createElement('div');
-                const randomColor = heartColors[Math.floor(Math.random() * heartColors.length)];
-                heart.classList.add('heart', randomColor);
-                heart.style.left = `${Math.random() * 100}vw`;
-                heart.style.animationDuration = `${Math.random() * 3 + 5}s`;
-                heart.style.opacity = Math.random() * 0.7 + 0.3;
-                heart.style.transform = `scale(${Math.random() * 0.8 + 0.5}) rotate(-45deg)`;
-                heartContainer.appendChild(heart);
-                setTimeout(() => heart.remove(), 8000);
-            }, 300);
-        }
-
-        function createGlitters() {
-            const imageContainer = document.getElementById('image-container');
-            setInterval(() => {
-                const glitter = document.createElement('div');
-                const type = Math.ceil(Math.random() * 3);
-                glitter.classList.add('glitter', `glitter-type-${type}`);
-                glitter.style.top = `${Math.random() * 100}%`;
-                glitter.style.left = `${Math.random() * 100}%`;
-                glitter.style.animationDelay = `${Math.random() * 2}s`;
-                imageContainer.appendChild(glitter);
-                setTimeout(() => glitter.remove(), 2000);
-            }, 150);
-        }
-
-        function animateRecipientName(name) {
-            const container = document.createElement('span');
-            container.id = 'recipient-name-container';
-            name.split('').forEach((char, index) => {
-                const span = document.createElement('span');
-                span.className = 'recipient-char';
-                span.innerHTML = char === ' ' ? '&nbsp;' : char;
-                span.style.animationDelay = `${index * 0.08 + 0.5}s`;
-                container.appendChild(span);
-            });
-            return container;
-        }
-
-        window.onload = function() {
-            createHearts();
-            createGlitters();
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const name = urlParams.get('name');
-            if (name) {
-                const greetingMessage = document.getElementById('greeting-message');
-                const animatedName = animateRecipientName(decodeURIComponent(name));
-                greetingMessage.innerHTML = '';
-                greetingMessage.appendChild(animatedName);
-                greetingMessage.append(" is sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!");
-
-                const repeatBtn = document.createElement('button');
-                repeatBtn.innerText = "✨ Send Your Own Wish ✨";
-                repeatBtn.className = "btn";
-                repeatBtn.onclick = openPopup;
-                document.querySelector('.container').appendChild(repeatBtn);
-            }
-        };
-
         function openPopup() {
-            document.getElementById('popup').style.display = 'flex';
+            document.getElementById("popup").style.display = "flex";
         }
 
         function closePopup() {
-            document.getElementById('popup').style.display = 'none';
+            document.getElementById("popup").style.display = "none";
         }
 
         function generateLink() {
-            const senderName = document.getElementById('senderName').value;
-            if (senderName.trim() === "") {
-                alert("Please enter your name!");
+            const senderName = document.getElementById("senderName").value;
+            if (senderName.trim() === '') {
+                alert("Please enter your name");
                 return;
             }
-
-            const baseUrl = window.location.origin + window.location.pathname; // same page link
+            const baseUrl = window.location.origin + window.location.pathname;
             const personalizedLink = `${baseUrl}?name=${encodeURIComponent(senderName)}`;
 
-            document.getElementById('copy-link-input').value = personalizedLink;
+            document.getElementById("copy-link-input").value = personalizedLink;
+            document.getElementById("whatsapp-share-link").href = `https://api.whatsapp.com/send?text=You've received a Raksha Bandhan wish from ${senderName}! %0A${personalizedLink}`;
 
-            const message = `\uD83D\uDC96 You've received a magical Raksha Bandhan wish from ${senderName}! \uD83D\uDC96\n\nCheck it out: ${personalizedLink}`;
-            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-            document.getElementById('whatsapp-share-link').href = whatsappUrl;
-
-            document.getElementById('share-section').style.display = 'block';
+            document.getElementById("share-section").style.display = "block";
         }
 
         function copyToClipboard() {
-            const copyText = document.getElementById('copy-link-input');
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
+            const input = document.getElementById("copy-link-input");
+            input.select();
             document.execCommand("copy");
-            alert("Link copied to clipboard!");
+            alert("Link copied!");
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get("name");
+            if (name) {
+                const greeting = document.getElementById("greeting-message");
+                greeting.innerHTML = `<strong style='font-size:1.3em;'>${decodeURIComponent(name)}</strong> is sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!`;
+
+                const repeatBtn = document.createElement("button");
+                repeatBtn.textContent = "✨ Send Your Own Wish ✨";
+                repeatBtn.className = "btn";
+                repeatBtn.onclick = openPopup;
+                document.querySelector(".card").appendChild(repeatBtn);
+            }
         }
     </script>
-
 </body>
 </html>
