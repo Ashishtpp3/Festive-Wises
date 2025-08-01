@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '9f5ed8c42fb0de51562560e647d5668f',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/9f5ed8c42fb0de51562560e647d5668f/invoke.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Raksha Bandhan!</title>
@@ -15,21 +25,6 @@
             padding: 20px;
             overflow-x: hidden;
             position: relative;
-        }
-        
-        /* Banner Ad Styles */
-        .banner-ad {
-            width: 100%;
-            max-width: 468px;
-            height: 60px;
-            margin: 10px auto;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 3;
         }
         
         /* Popping Hearts Background */
@@ -68,6 +63,7 @@
         .heart-color-2, .heart-color-2::before, .heart-color-2::after { background: #ff9800; } /* Festive Orange */
         .heart-color-3, .heart-color-3::before, .heart-color-3::after { background: #9c27b0; } /* Royal Purple */
         .heart-color-4, .heart-color-4::before, .heart-color-4::after { background: #c2185b; } /* Magenta */
+
 
         /* Decoration elements */
         .decoration {
@@ -154,28 +150,17 @@
             opacity: 0;
         }
         
-        .personalized-message {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
-            font-size: 1.3em;
-            text-shadow: none;
-            animation: bounceIn 1.5s ease-out forwards;
-            transform: scale(0);
-        }
-        
         #recipient-name-container { display: inline-block; }
         
         .recipient-char {
             display: inline-block;
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            color: #c2185b;
-            font-size: 1.6em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #d81b60;
+            font-size: 1.3em;
             opacity: 0;
             animation: dropIn 0.5s forwards;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .name-input {
@@ -218,12 +203,12 @@
              background: linear-gradient(45deg, #bdbdbd, #9e9e9e);
              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn.copy-btn {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
             box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
         }
-        
+
         .btn.whatsapp-btn {
             background: linear-gradient(45deg, #25D366, #128C7E);
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
@@ -237,11 +222,11 @@
         .btn.back-btn:hover {
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
-        
+
         .btn.copy-btn:hover {
             box-shadow: 0 12px 30px rgba(76, 175, 80, 0.4);
         }
-        
+
         .btn.whatsapp-btn:hover {
             box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
         }
@@ -276,28 +261,54 @@
             gap: 15px;
             flex-wrap: wrap;
         }
-        
-        .link-display {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            word-break: break-all;
-            font-family: monospace;
-            font-size: 0.9em;
-            border: 2px dashed #ddd;
+
+        #share-section {
+            margin-top: 25px;
         }
-        
+
+        #share-section p {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         .success-message {
-            color: #4CAF50;
-            font-weight: 600;
-            margin: 10px 0;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
             opacity: 0;
-            transition: opacity 0.3s;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
         }
-        
+
         .success-message.show {
             opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ad containers */
+        .ad-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+        }
+
+        .ad-top {
+            margin-bottom: 20px;
+        }
+
+        .ad-bottom {
+            margin-top: 20px;
         }
         
         @keyframes floatUp {
@@ -313,17 +324,41 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); }}
         @keyframes slideInUp { from { transform: translateY(50px) scale(0.95); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; }}
         @keyframes dropIn { to { opacity: 1; transform: translateY(0) scale(1); }}
-        @keyframes bounceIn {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 3.5em;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+                margin: 3px;
+            }
+            
+            #popup-content {
+                padding: 25px;
+                margin: 20px;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
     </style>
 </head>
 <body>
-    <!-- Top Banner Ad -->
-    <div class="banner-ad">
+
+    <!-- Top Ad -->
+    <div class="ad-container ad-top">
         <script type="text/javascript">
             atOptions = {
                 'key' : '9f5ed8c42fb0de51562560e647d5668f',
@@ -343,14 +378,14 @@
     <div class="container">
         <h1>Happy Raksha Bandhan!</h1>
         <div class="image-container" id="image-container">
-            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop&crop=center" alt="Happy Raksha Bandhan" class="rakhi-gif">
+            <img src="raksha-bandhan.jpg" alt="Happy Raksha Bandhan" class="rakhi-gif">
         </div>
         <p id="greeting-message">Sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!</p>
         <button class="btn" onclick="openPopup()">✨ Create a Personalized Wish ✨</button>
     </div>
 
-    <!-- Bottom Banner Ad -->
-    <div class="banner-ad">
+    <!-- Bottom Ad -->
+    <div class="ad-container ad-bottom">
         <script type="text/javascript">
             atOptions = {
                 'key' : '9f5ed8c42fb0de51562560e647d5668f',
@@ -372,19 +407,20 @@
                 <button class="btn back-btn" onclick="closePopup()">Back</button>
                 <button class="btn" onclick="generateLink()">Generate Link</button>
             </div>
-            <div id="share-section" style="display: none; margin-top: 25px;">
+            <div id="share-section" style="display: none;">
                 <p>Your personalized link is ready! Share the magic:</p>
-                <div class="link-display" id="generated-link"></div>
-                <div class="success-message" id="copy-success">Link copied to clipboard!</div>
-                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                <div class="share-buttons">
                     <button class="btn copy-btn" onclick="copyLink()">📋 Copy Link</button>
                     <a id="whatsapp-share-link" href="#" class="btn whatsapp-btn" target="_blank">📱 Share on WhatsApp</a>
                 </div>
+                <div id="success-message" class="success-message"></div>
             </div>
         </div>
     </div>
 
     <script>
+        let generatedLink = '';
+
         // --- ANIMATION SCRIPTS ---
 
         function createHearts() {
@@ -444,15 +480,13 @@
             createGlitters();
 
             const urlParams = new URLSearchParams(window.location.search);
-            const senderName = urlParams.get('name');
-            if (senderName) {
+            const name = urlParams.get('name');
+            if (name) {
                 const greetingMessage = document.getElementById('greeting-message');
-                const animatedName = animateRecipientName(decodeURIComponent(senderName));
-                
-                greetingMessage.innerHTML = '';
+                const animatedName = animateRecipientName(decodeURIComponent(name));
+                greetingMessage.innerHTML = 'I ';
                 greetingMessage.appendChild(animatedName);
-                greetingMessage.append(' is sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!');
-                greetingMessage.classList.add('personalized-message');
+                greetingMessage.append(' am sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!');
             }
         };
 
@@ -473,48 +507,50 @@
                 return;
             }
 
-            // Get current URL and create personalized link
             const baseUrl = window.location.origin + window.location.pathname;
             const personalizedLink = `${baseUrl}?name=${encodeURIComponent(senderName)}`;
+            generatedLink = personalizedLink;
 
-            // Display the link
-            document.getElementById('generated-link').textContent = personalizedLink;
-            
-            // Create WhatsApp message
             const message = `💖 You've received a magical Raksha Bandhan wish from ${senderName}! 💖\n\nCheck it out: ${personalizedLink}`;
             const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
 
             document.getElementById('whatsapp-share-link').href = whatsappUrl;
             document.getElementById('share-section').style.display = 'block';
-            
-            // Store link for copying
-            window.generatedLink = personalizedLink;
         }
-        
+
         function copyLink() {
-            if (window.generatedLink) {
-                navigator.clipboard.writeText(window.generatedLink).then(function() {
-                    const successMsg = document.getElementById('copy-success');
-                    successMsg.classList.add('show');
-                    setTimeout(() => {
-                        successMsg.classList.remove('show');
-                    }, 2000);
-                }).catch(function(err) {
-                    // Fallback for older browsers
-                    const textArea = document.createElement('textarea');
-                    textArea.value = window.generatedLink;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    
-                    const successMsg = document.getElementById('copy-success');
-                    successMsg.classList.add('show');
-                    setTimeout(() => {
-                        successMsg.classList.remove('show');
-                    }, 2000);
-                });
+            if (!generatedLink) {
+                alert('Please generate a link first!');
+                return;
             }
+
+            navigator.clipboard.writeText(generatedLink).then(function() {
+                showSuccessMessage('Link copied to clipboard! 📋✨');
+            }, function(err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = generatedLink;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccessMessage('Link copied to clipboard! 📋✨');
+                } catch (err) {
+                    alert('Failed to copy link. Please copy manually: ' + generatedLink);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+
+        function showSuccessMessage(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.classList.add('show');
+            
+            setTimeout(() => {
+                successDiv.classList.remove('show');
+            }, 3000);
         }
     </script>
 </body>
