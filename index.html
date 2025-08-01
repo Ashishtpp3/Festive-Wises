@@ -10,11 +10,48 @@
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to bottom right, #ffe1ec, #ffd3d3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            transform: rotate(45deg);
+            animation: float 10s infinite linear;
+            z-index: 0;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(45deg);
+                opacity: 0;
+            }
         }
 
         .card {
@@ -25,7 +62,9 @@
             width: 100%;
             text-align: center;
             padding: 40px 30px;
+            margin: 60px auto 120px;
             position: relative;
+            z-index: 1;
         }
 
         h1 {
@@ -41,6 +80,7 @@
             border-radius: 50%;
             margin: 0 auto 25px;
             display: block;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
         }
 
         p {
@@ -50,7 +90,11 @@
             margin-bottom: 30px;
         }
 
-        .btn {
+        .fixed-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             background: linear-gradient(45deg, #f5508a, #f783ac);
             color: white;
             padding: 15px 30px;
@@ -59,11 +103,13 @@
             font-size: 1em;
             font-weight: 600;
             cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 0 20px #f783ac;
             transition: transform 0.2s ease;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
+        .fixed-btn:hover {
+            transform: translateX(-50%) scale(1.05);
         }
 
         #popup {
@@ -73,6 +119,7 @@
             display: none;
             align-items: center;
             justify-content: center;
+            z-index: 3;
         }
 
         #popup-content {
@@ -100,27 +147,48 @@
             margin-top: 20px;
         }
 
-        .share-links input {
-            text-align: center;
+        .animated-message {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #d81b60;
+            animation: popIn 0.6s ease-out;
         }
 
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <!-- Floating hearts -->
+    <script>
+        for(let i=0; i<20; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 10 + 's';
+            heart.style.opacity = Math.random();
+            heart.style.background = ["#f783ac", "#f5508a", "#ff9eb2"][Math.floor(Math.random()*3)];
+            document.body.appendChild(heart);
+        }
+    </script>
+
     <div class="card">
         <h1>Happy Raksha Bandhan!</h1>
         <img src="raksha-bandhan.jpg" alt="Rakhi Art" class="rakhi-img">
         <p id="greeting-message">
             Sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!
         </p>
-        <button class="btn" onclick="openPopup()">✨ Create a Personalized Wish ✨</button>
     </div>
+
+    <button class="fixed-btn" onclick="openPopup()">✨ Create Your Own Wish ✨</button>
 
     <div id="popup">
         <div id="popup-content">
             <h2 style="color: #d81b60; font-family: 'Dancing Script', cursive; font-size: 2.5em;">Send Your Wish</h2>
             <input type="text" id="senderName" class="name-input" placeholder="Enter your name">
-            <button class="btn" onclick="generateLink()">Generate Link</button>
+            <button class="fixed-btn" style="position:static;margin:10px auto 0;display:block" onclick="generateLink()">Generate Link</button>
             <div class="share-links" id="share-section" style="display:none;">
                 <input type="text" id="copy-link-input" readonly class="name-input">
                 <button class="btn" onclick="copyToClipboard()">Copy Link</button>
@@ -166,13 +234,13 @@
             const name = urlParams.get("name");
             if (name) {
                 const greeting = document.getElementById("greeting-message");
-                greeting.innerHTML = `<strong style='font-size:1.3em;'>${decodeURIComponent(name)}</strong> is sending a thread of love to celebrate our special bond. May our connection grow stronger and our hearts fonder. Wishing you a joyful and blessed Raksha Bandhan!`;
+                greeting.innerHTML = `<div class='animated-message'>${decodeURIComponent(name)} is sending a thread of love to celebrate our special bond.<br>May our connection grow stronger and our hearts fonder.<br>Wishing you a joyful and blessed Raksha Bandhan!</div>`;
 
                 const repeatBtn = document.createElement("button");
-                repeatBtn.textContent = "✨ Send Your Own Wish ✨";
-                repeatBtn.className = "btn";
+                repeatBtn.textContent = "✨ Create Your Own Wish ✨";
+                repeatBtn.className = "fixed-btn";
                 repeatBtn.onclick = openPopup;
-                document.querySelector(".card").appendChild(repeatBtn);
+                document.body.appendChild(repeatBtn);
             }
         }
     </script>
